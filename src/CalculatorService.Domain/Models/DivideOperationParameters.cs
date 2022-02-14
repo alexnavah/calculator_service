@@ -1,4 +1,4 @@
-﻿namespace CalculatorService.Server.Models
+﻿namespace CalculatorService.Domain.Models
 {
     public class DivideOperationParameters
     {

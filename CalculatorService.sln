@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorService.Client", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorService.Server.Tests", "test\CalculatorService.Server.Tests\CalculatorService.Server.Tests.csproj", "{4FB75762-516F-43AE-8231-3660BBC4F091}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorService.Services", "src\CalculatorService.Services\CalculatorService.Services.csproj", "{BF1B3183-2698-4220-BE69-048821DD6E92}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorService.Domain", "src\CalculatorService.Domain\CalculatorService.Domain.csproj", "{9D518379-DFB7-445A-9452-190CF8084BFB}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{4FB75762-516F-43AE-8231-3660BBC4F091}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FB75762-516F-43AE-8231-3660BBC4F091}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FB75762-516F-43AE-8231-3660BBC4F091}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF1B3183-2698-4220-BE69-048821DD6E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF1B3183-2698-4220-BE69-048821DD6E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF1B3183-2698-4220-BE69-048821DD6E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF1B3183-2698-4220-BE69-048821DD6E92}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D518379-DFB7-445A-9452-190CF8084BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D518379-DFB7-445A-9452-190CF8084BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D518379-DFB7-445A-9452-190CF8084BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU

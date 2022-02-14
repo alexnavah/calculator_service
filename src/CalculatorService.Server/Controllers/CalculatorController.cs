@@ -1,4 +1,4 @@
-﻿using CalculatorService.Server.Models;
+﻿using CalculatorService.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalculatorService.Server.Controllers
@@ -7,6 +7,11 @@ namespace CalculatorService.Server.Controllers
     [Route("[controller]")]
     public class CalculatorController : Controller
     {
+        public CalculatorController()
+        {
+
+        }
+
         [HttpPost("add")]
         public IActionResult Add(AddOperationParameters parameters)
         {

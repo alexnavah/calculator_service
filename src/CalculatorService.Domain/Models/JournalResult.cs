@@ -1,4 +1,6 @@
-﻿namespace CalculatorService.Server.Models
+﻿using CalculatorService.Domain.Models;
+
+namespace CalculatorService.Server.Models
 {
     public class JournalResult
     {

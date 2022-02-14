@@ -6,7 +6,7 @@ namespace CalculatorService.Server.Controllers
     [Route("[controller]")]
     public class JournalController : Controller
     {
-        [HttpPost("query")]
+        [HttpGet("query")]
         public ActionResult Query(string id)
         {
 

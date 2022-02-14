@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CalculatorService.Services\CalculatorService.Services.csproj" />
+    <ProjectReference Include="..\CalculatorService.Domain\CalculatorService.Domain.csproj" />
   </ItemGroup>
 
 
