@@ -1,4 +1,5 @@
-﻿using CalculatorService.Domain.Models;
+﻿using CalculatorService.Domain.Commands;
+using CalculatorService.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalculatorService.Server.Controllers
@@ -7,9 +8,18 @@ namespace CalculatorService.Server.Controllers
     [Route("[controller]")]
     public class CalculatorController : Controller
     {
-        public CalculatorController()
-        {
+        private readonly AddCommand _addCommand;
+        private readonly SubtractCommand _subtractCommand;
+        private readonly MultiplyCommand _multiplyCommand;
+        private readonly DivideCommand _divideCommand;
 
+        public CalculatorController(AddCommand addCommand, SubtractCommand subtractCommand, 
+            MultiplyCommand multiplyCommand, DivideCommand divideCommand)
+        {
+            _addCommand = addCommand;
+            _subtractCommand = subtractCommand;
+            _multiplyCommand = multiplyCommand;
+            _divideCommand = divideCommand;
         }
 
         [HttpPost("add")]

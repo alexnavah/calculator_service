@@ -1,4 +1,5 @@
 ﻿using CalculatorService.Domain.Models;
+using System;
 
 namespace CalculatorService.Domain.Commands
 {
@@ -6,9 +7,9 @@ namespace CalculatorService.Domain.Commands
     {
         public override DivideOperationResult Compute(DivideOperationParameters parameters)
         {
-            return null;
+            var quotient = Math.DivRem(parameters.Dividend, parameters.Divisor, out var remainder);
 
-            //return DivideOperationResult.Create(quotient, remainder);
+            return DivideOperationResult.Create(quotient, remainder);
         }
     }
 }
