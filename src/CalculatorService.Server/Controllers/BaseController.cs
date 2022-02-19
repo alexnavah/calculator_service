@@ -5,7 +5,7 @@ namespace CalculatorService.Server.Controllers
 {
     public abstract class BaseController : Controller
     {
-        public IActionResult HandleComputeResult(OperationResult result)
+        public IActionResult HandleComputeResult<T>(T result) where T : OperationResult
         {
             if (result.Success)
             {
@@ -23,7 +23,7 @@ namespace CalculatorService.Server.Controllers
 
         public void HandleTracking()
         {
-            if (Request.Headers.TryGetValue("X Evi Tracking Id", out var trackingId))
+            if (Request.Headers.TryGetValue("X‐Evi‐Tracking‐Id", out var trackingId))
             {
 
             }

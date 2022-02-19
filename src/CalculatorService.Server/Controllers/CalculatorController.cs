@@ -16,7 +16,7 @@ namespace CalculatorService.Server.Controllers
         private readonly DivideCommand _divideCommand;
 
         public CalculatorController(IValidatorService validatorService, AddCommand addCommand, SubtractCommand subtractCommand, 
-            MultiplyCommand multiplyCommand, DivideCommand divideCommand) : base()
+            MultiplyCommand multiplyCommand, DivideCommand divideCommand)
         {
             _validatorService = validatorService;
             _addCommand = addCommand;
@@ -45,7 +45,7 @@ namespace CalculatorService.Server.Controllers
         {
             var computeResult = _subtractCommand.Compute(parameters);
 
-            return Ok(computeResult);
+            return HandleComputeResult(computeResult);
         }
 
         [HttpPost("mult")]
@@ -53,7 +53,7 @@ namespace CalculatorService.Server.Controllers
         {
             var computeResult = _multiplyCommand.Compute(parameters);
 
-            return Ok(computeResult);
+            return HandleComputeResult(computeResult);
         }
 
         [HttpPost("div")]
@@ -66,7 +66,7 @@ namespace CalculatorService.Server.Controllers
 
             var computeResult = _divideCommand.Compute(parameters);
 
-            return Ok(computeResult);
+            return HandleComputeResult(computeResult);
         }
     }
 }
