@@ -15,6 +15,7 @@ namespace CalculatorService.Server.Configuration
             services.AddScoped<MultiplyCommand>();
             services.AddScoped<DivideCommand>();
             services.AddScoped<SquareRootCommand>();
+            services.AddScoped<IValidatorService, ValidatorService>();
         }
     }
 }

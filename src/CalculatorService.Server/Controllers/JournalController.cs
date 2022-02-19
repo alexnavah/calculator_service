@@ -7,7 +7,7 @@ namespace CalculatorService.Server.Controllers
     public class JournalController : Controller
     {
         [HttpGet("query")]
-        public ActionResult Query(string id)
+        public ActionResult JournalQuery(string id)
         {
 
             return Ok();

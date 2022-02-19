@@ -1,4 +1,6 @@
-﻿using CalculatorService.Domain.Models;
+﻿using CalculatorService.Domain.Commands.Abstractions;
+using CalculatorService.Domain.Models;
+using System;
 
 namespace CalculatorService.Domain.Commands
 {
@@ -6,9 +8,16 @@ namespace CalculatorService.Domain.Commands
     {
         public override SubtractOperationResult Compute(SubtractOperationParameters parameters)
         {
-            var difference = parameters.Minuend - parameters.Subtrahend;
+            try
+            {
+                var difference = parameters.Minuend - parameters.Subtrahend;
 
-            return SubtractOperationResult.Create(difference);
+                return SubtractOperationResult.Create(difference);
+            }
+            catch (ArithmeticException exception)
+            {
+                return SubtractOperationResult.Create(exception);
+            }
         }
     }
 }

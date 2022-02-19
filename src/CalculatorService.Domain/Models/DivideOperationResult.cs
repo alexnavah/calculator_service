@@ -1,11 +1,18 @@
-﻿namespace CalculatorService.Domain.Models
+﻿using System;
+
+namespace CalculatorService.Domain.Models
 {
-    public class DivideOperationResult
+    public class DivideOperationResult : OperationResult
     {
         public DivideOperationResult(int quotient, int remainder)
         {
             Quotient = quotient;
             Remainder = remainder;
+        }
+
+        private DivideOperationResult(Exception exception)
+        {
+            Exception = exception;
         }
 
         public int Quotient { get; set; }
@@ -14,6 +21,11 @@
         public static DivideOperationResult Create(int quotient, int remainder)
         {
             return new DivideOperationResult(quotient, remainder);
+        }
+
+        public static DivideOperationResult Create(Exception exception)
+        {
+            return new DivideOperationResult(exception);
         }
     }
 }

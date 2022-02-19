@@ -1,4 +1,5 @@
-﻿using CalculatorService.Domain.Models;
+﻿using CalculatorService.Domain.Commands.Abstractions;
+using CalculatorService.Domain.Models;
 using System;
 
 namespace CalculatorService.Domain.Commands
@@ -7,9 +8,16 @@ namespace CalculatorService.Domain.Commands
     {
         public override SquareRootOperationResult Compute(SquareRootOperationParameters parameters)
         {
-            var square = Math.Sqrt(parameters.Number);
+            try
+            {
+                var square = Math.Sqrt(parameters.Number);
 
-            return SquareRootOperationResult.Create(square);
+                return SquareRootOperationResult.Create(square);
+            }
+            catch (ArithmeticException exception)
+            {
+                return SquareRootOperationResult.Create(exception);
+            }
         }
     }
 }

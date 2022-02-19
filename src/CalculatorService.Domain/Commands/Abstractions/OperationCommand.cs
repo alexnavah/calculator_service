@@ -1,4 +1,4 @@
-﻿namespace CalculatorService.Domain.Commands
+﻿namespace CalculatorService.Domain.Commands.Abstractions
 {
     public abstract class OperationCommand<TParameters, TResult>
     {
