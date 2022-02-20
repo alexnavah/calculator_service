@@ -1,5 +1,6 @@
 ﻿using CalculatorService.Domain.Commands;
 using CalculatorService.Domain.Models.Operations;
+using CalculatorService.Domain.Services;
 using CalculatorService.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace CalculatorService.Server.Controllers
         private readonly DivideCommand _divideCommand;
 
         public CalculatorController(IValidatorService validatorService, AddCommand addCommand, SubtractCommand subtractCommand, 
-            MultiplyCommand multiplyCommand, DivideCommand divideCommand)
+            MultiplyCommand multiplyCommand, DivideCommand divideCommand, IMemoryCacheService memoryCacheService) : base(memoryCacheService)
         {
             _validatorService = validatorService;
             _addCommand = addCommand;
@@ -35,7 +36,7 @@ namespace CalculatorService.Server.Controllers
 
             var computeResult = _addCommand.Compute(parameters);
 
-            //HandleTracking(computeResult);
+            HandleTracking(computeResult);
 
             return HandleComputeResult(computeResult);
         }
