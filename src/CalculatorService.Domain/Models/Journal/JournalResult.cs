@@ -1,6 +1,4 @@
-﻿using CalculatorService.Domain.Models;
-
-namespace CalculatorService.Server.Models
+﻿namespace CalculatorService.Domain.Models.Journal
 {
     public class JournalResult
     {

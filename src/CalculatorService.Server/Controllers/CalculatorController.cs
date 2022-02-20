@@ -1,5 +1,5 @@
 ﻿using CalculatorService.Domain.Commands;
-using CalculatorService.Domain.Models;
+using CalculatorService.Domain.Models.Operations;
 using CalculatorService.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

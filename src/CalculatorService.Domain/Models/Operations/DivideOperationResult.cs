@@ -1,6 +1,7 @@
-﻿using System;
+﻿using CalculatorService.Domain.Models.Abstractions;
+using System;
 
-namespace CalculatorService.Domain.Models
+namespace CalculatorService.Domain.Models.Operations
 {
     public class DivideOperationResult : OperationResult
     {
@@ -17,7 +18,7 @@ namespace CalculatorService.Domain.Models
 
         public int Quotient { get; set; }
         public int Remainder { get; set; }
-    
+
         public static DivideOperationResult Create(int quotient, int remainder)
         {
             return new DivideOperationResult(quotient, remainder);

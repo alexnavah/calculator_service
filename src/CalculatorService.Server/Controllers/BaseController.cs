@@ -1,4 +1,5 @@
-﻿using CalculatorService.Domain.Models;
+﻿using CalculatorService.Domain.Models.Abstractions;
+using CalculatorService.Domain.Models.Error;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalculatorService.Server.Controllers

@@ -1,4 +1,4 @@
-﻿namespace CalculatorService.Domain.Models
+﻿namespace CalculatorService.Domain.Models.Error
 {
     public enum ErrorCode
     {

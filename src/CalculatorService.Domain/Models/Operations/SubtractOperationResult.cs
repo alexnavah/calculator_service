@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CalculatorService.Domain.Models.Abstractions;
+using System;
 
 namespace CalculatorService.Domain.Models
 {

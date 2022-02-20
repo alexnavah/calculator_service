@@ -1,4 +1,4 @@
-﻿using CalculatorService.Domain.Models;
+﻿using CalculatorService.Domain.Models.Operations;
 
 namespace CalculatorService.Domain.Services.Interfaces
 {

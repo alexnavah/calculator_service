@@ -1,5 +1,5 @@
 ﻿using CalculatorService.Domain.Commands;
-using CalculatorService.Domain.Models;
+using CalculatorService.Domain.Models.Operations;
 using Xunit;
 
 namespace CalculatorService.Server.Tests.Unit.Commands
