@@ -10,14 +10,14 @@ namespace CalculatorService.Domain.Commands
         {
             try
             {
-                var product = 0;
+                var product = 1;
 
                 /***
                  * If last value in the array is zero, the result will be zero, so iteration is pointless.
                  */
-                if (parameters.Factors[parameters.Factors.Length - 1] == 0)
+                if (parameters.Factors[parameters.Factors.Length - 1].Equals(0))
                 {
-                    return MultiplyOperationResult.Create(product);
+                    return MultiplyOperationResult.Create(0);
                 }
 
                 /***

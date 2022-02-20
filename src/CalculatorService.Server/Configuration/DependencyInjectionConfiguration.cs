@@ -9,7 +9,8 @@ namespace CalculatorService.Server.Configuration
     {
         public static void ConfigureDependencyInjection(this IServiceCollection services)
         {
-            services.AddSingleton<IMemoryCacheStorage, MemoryCacheStorage>();
+            services.AddSingleton<IMemoryCacheService, MemoryCacheService>();
+
             services.AddScoped<AddCommand>();
             services.AddScoped<SubtractCommand>();
             services.AddScoped<MultiplyCommand>();

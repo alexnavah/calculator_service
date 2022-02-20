@@ -35,7 +35,7 @@ namespace CalculatorService.Server.Controllers
 
             var computeResult = _addCommand.Compute(parameters);
 
-            HandleTracking(computeResult);
+            //HandleTracking(computeResult);
 
             return HandleComputeResult(computeResult);
         }

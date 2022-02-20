@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace CalculatorService.Domain.Models
 {
     public abstract class OperationResult
     {
-        public bool Success => Exception != null;
+        [JsonIgnore]
+        public bool Success => Exception == null;
+        [JsonIgnore]
         public Exception Exception { get; set; } 
     }
 }
