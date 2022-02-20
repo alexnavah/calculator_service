@@ -1,6 +1,5 @@
 ﻿using CalculatorService.Domain.Commands;
 using CalculatorService.Domain.Models;
-using System;
 using Xunit;
 
 namespace CalculatorService.Server.Tests.Unit.Commands

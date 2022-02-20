@@ -12,6 +12,12 @@ namespace CalculatorService.Domain.Commands
             {
                 var square = Math.Sqrt(parameters.Number);
 
+                // C# support Not-a-Number result in double type operations, so we need to manually check for it
+                if (square.Equals(double.NaN))
+                {
+                    throw new NotFiniteNumberException();
+                }
+
                 return SquareRootOperationResult.Create(square);
             }
             catch (ArithmeticException exception)
