@@ -1,15 +1,16 @@
 ﻿using CalculatorService.Domain.Commands;
 using CalculatorService.Domain.Commands.Interfaces;
-using CalculatorService.Domain.Models.Abstractions;
 using CalculatorService.Domain.Models.Extensions;
 using CalculatorService.Domain.Models.Journal;
 using CalculatorService.Domain.Models.Operations;
 using CalculatorService.Domain.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalculatorService.Server.Controllers
 {
     [ApiController]
+    [AllowAnonymous]
     [Route("[controller]")]
     public class CalculatorController : BaseController
     {

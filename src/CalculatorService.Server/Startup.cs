@@ -21,8 +21,8 @@ namespace CalculatorService.Server
         {
             services.AddControllers();
             services.AddMemoryCache();
-
             services.ConfigureDependencyInjection();
+
             services.AddSwaggerGen();
         }
 

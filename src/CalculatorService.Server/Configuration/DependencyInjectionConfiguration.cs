@@ -1,4 +1,5 @@
 ﻿using CalculatorService.Domain.Commands;
+using CalculatorService.Domain.Commands.Interfaces;
 using CalculatorService.Domain.Services;
 using CalculatorService.Domain.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ namespace CalculatorService.Server.Configuration
             services.AddScoped<DivideCommand>();
             services.AddScoped<SquareRootCommand>();
             services.AddScoped<IValidatorService, ValidatorService>();
+            services.AddScoped<IAddJournalEntryCommand, AddJournalEntryCommand>();
         }
     }
 }

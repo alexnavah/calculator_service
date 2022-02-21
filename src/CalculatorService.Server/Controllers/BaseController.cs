@@ -6,7 +6,7 @@ namespace CalculatorService.Server.Controllers
 {
     public abstract class BaseController : Controller
     {
-        public IActionResult HandleComputeResult<T>(T result) where T : OperationResult
+        protected IActionResult HandleComputeResult<T>(T result) where T : OperationResult
         {
             if (result.Success)
             {
@@ -18,8 +18,8 @@ namespace CalculatorService.Server.Controllers
             }
         }
 
-        public IActionResult GetBadRequestError() => BadRequest(ErrorResult.CreateBadRequest());
+        protected IActionResult GetBadRequestError() => BadRequest(ErrorResult.CreateBadRequest());
 
-        public ErrorResult GetInternalServer() => ErrorResult.CreateInternalError();        
+        protected ErrorResult GetInternalServer() => ErrorResult.CreateInternalError();        
     }
 }
