@@ -1,7 +1,7 @@
 ﻿using CalculatorService.Domain.Models.Abstractions;
 using System;
 
-namespace CalculatorService.Domain.Models
+namespace CalculatorService.Domain.Models.Operations
 {
     public class SubtractOperationResult : OperationResult
     {

@@ -1,5 +1,4 @@
 ﻿using CalculatorService.Domain.Commands.Abstractions;
-using CalculatorService.Domain.Models;
 using CalculatorService.Domain.Models.Operations;
 using System;
 

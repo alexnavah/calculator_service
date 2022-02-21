@@ -1,8 +1,10 @@
-﻿using CalculatorService.Domain.Services;
+﻿using CalculatorService.Domain.Models.Journal;
+using CalculatorService.Domain.Queries.Interfaces;
+using CalculatorService.Domain.Services;
 
 namespace CalculatorService.Domain.Queries
 {
-    public class JournalQuery
+    public class JournalQuery : IJournalQuery
     {
         private readonly IMemoryCacheService _memoryCacheService;
 
@@ -11,9 +13,11 @@ namespace CalculatorService.Domain.Queries
             _memoryCacheService = memoryCacheService;
         }
 
-        public void Execute(int trackingId)
+        public JournalResult Execute(string trackingId)
         {
-            //var records = _memoryCacheService.Get<>
+            var records = _memoryCacheService.Get<JournalResult>(trackingId);
+
+            return records;
         }
     }
 }
