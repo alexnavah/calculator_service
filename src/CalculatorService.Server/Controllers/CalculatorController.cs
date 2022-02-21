@@ -1,6 +1,7 @@
-﻿using CalculatorService.Domain;
-using CalculatorService.Domain.Commands;
+﻿using CalculatorService.Domain.Commands;
 using CalculatorService.Domain.Commands.Interfaces;
+using CalculatorService.Domain.Models.Abstractions;
+using CalculatorService.Domain.Models.Extensions;
 using CalculatorService.Domain.Models.Journal;
 using CalculatorService.Domain.Models.Operations;
 using CalculatorService.Domain.Services.Interfaces;
@@ -64,6 +65,11 @@ namespace CalculatorService.Server.Controllers
         [HttpPost("mult")]
         public IActionResult Multiply(MultiplyOperationParameters parameters)
         {
+            if (!_validatorService.IsValid(parameters))
+            {
+                return GetBadRequestError();
+            }
+
             var computeResult = _multiplyCommand.Compute(parameters);
 
             if (computeResult.Success)

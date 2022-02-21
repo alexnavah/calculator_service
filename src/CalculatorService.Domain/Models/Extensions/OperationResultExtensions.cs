@@ -1,7 +1,7 @@
 ﻿using CalculatorService.Domain.Models.Journal;
 using CalculatorService.Domain.Models.Operations;
 
-namespace CalculatorService.Domain
+namespace CalculatorService.Domain.Models.Extensions
 {
     public static class OperationResultExtensions
     {

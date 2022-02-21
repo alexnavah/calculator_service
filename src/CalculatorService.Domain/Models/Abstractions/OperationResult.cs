@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CalculatorService.Domain.Models.Journal;
+using System;
 using System.Text.Json.Serialization;
 
 namespace CalculatorService.Domain.Models.Abstractions

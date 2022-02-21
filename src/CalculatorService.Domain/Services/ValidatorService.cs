@@ -15,6 +15,16 @@ namespace CalculatorService.Domain.Services
             return true;
         }
 
+        public bool IsValid(MultiplyOperationParameters parameters)
+        {
+            if (parameters.Factors == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public bool IsValid(DivideOperationParameters parameters)
         {
             if (parameters.Divisor == 0)
