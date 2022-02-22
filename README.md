@@ -73,6 +73,21 @@ POST /journal/query
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Key to find operations |
 
-## Command line client
+## Command line client (*CalculatorService.Client*)
 The console application does HTTP requests to the API endpoints below.
 
+| Parameter | Description                       |
+| :-------- | :-------------------------------- |
+| `-o`      | **Required**. Operation type |
+| `-p`      | **Required**. Operation parameters |
+| `-x`      | Tracking identifier |
+
+### CLI examples
+| Type      | Description                   | Example              |
+| :------   | :---------------------------  | :--------------------|
+| `add`     | Sum two or more values        |`-o "add" -p 1+2+3+4+5`        |
+| `sub`     | Minuend minus subtrahend      |`-o "sub" -p 10-4`          |
+| `mult`    | Multiply two or more values   |`-o "mult" -p 1*2*3*4*5`|
+| `div`     | Dividend divide divisor      |`-o "div" -p 10/4`|
+| `sqrt`    | Squareroot of a number       |`-o "sqrt" -p 4`|
+| `journal` | Operations of a tracking identifier |`-o "journal" -p "trackId"` |

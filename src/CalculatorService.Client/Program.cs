@@ -9,7 +9,7 @@ namespace CalculatorService.Client
 {
     class Program
     {
-        private static readonly string EndpointOption = "-e";
+        private static readonly string EndpointOption = "-o";
         private static readonly string ParametersOption = "-p";
         private static readonly string TrackingOption = "-x";
         private static readonly HttpClient Client = new HttpClient();
