@@ -6,6 +6,7 @@ using CalculatorService.Domain.Models.Operations;
 using CalculatorService.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CalculatorService.Server.Controllers
 {

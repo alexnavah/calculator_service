@@ -1,10 +1,13 @@
+using CalculatorService.Domain.Models.Error;
 using CalculatorService.Server.Attributes;
 using CalculatorService.Server.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json;
 
 namespace CalculatorService.Server
 {
@@ -44,6 +47,18 @@ namespace CalculatorService.Server
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseExceptionHandler(exceptionHandler =>
+            {
+                exceptionHandler.Run(async context =>
+                {
+                    if (context.Response.StatusCode.Equals(StatusCodes.Status500InternalServerError))
+                    {
+                        context.Response.ContentType = "application/json";
+                        await context.Response.WriteAsync(JsonSerializer.Serialize(ErrorResult.CreateInternalError()));
+                    }
+                });
+            });
 
             app.UseEndpoints(endpoints =>
             {

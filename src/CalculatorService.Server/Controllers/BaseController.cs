@@ -18,8 +18,6 @@ namespace CalculatorService.Server.Controllers
             }
         }
 
-        protected IActionResult GetBadRequestError() => BadRequest(ErrorResult.CreateBadRequest());
-
-        protected ErrorResult GetInternalServer() => ErrorResult.CreateInternalError();        
+        protected IActionResult GetBadRequestError() => BadRequest(ErrorResult.CreateBadRequest()); 
     }
 }
