@@ -11,7 +11,6 @@ using System;
 namespace CalculatorService.Server.Controllers
 {
     [ApiController]
-    [AllowAnonymous]
     public class CalculatorController : BaseController
     {
         private readonly IValidatorService _validatorService;

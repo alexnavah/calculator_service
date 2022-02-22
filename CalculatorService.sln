@@ -9,7 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorService.Client", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorService.Server.Tests", "test\CalculatorService.Server.Tests\CalculatorService.Server.Tests.csproj", "{4FB75762-516F-43AE-8231-3660BBC4F091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorService.Domain", "src\CalculatorService.Domain\CalculatorService.Domain.csproj", "{9D518379-DFB7-445A-9452-190CF8084BFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorService.Domain", "src\CalculatorService.Domain\CalculatorService.Domain.csproj", "{9D518379-DFB7-445A-9452-190CF8084BFB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{808117A6-20DA-40CC-A20E-0801BB36FFD1}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
