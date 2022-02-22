@@ -4,6 +4,14 @@
  - Sum, subtract, multiply, divide and squareroot.
  - If *X-Evi-Tracking-Id* header is present, the operation is saved in memory cache.
 
+# Enviroment and assumptions
+- .Net Core 3.1 has being used as the base of this solution
+- Int32 variables for most of the properties, except for squareroot operations.
+- As journal is only needed to be kept for the duration of the application, I have used memory cache. (*Microsoft.Extensions.Caching.Memory.IMemoryCache*)
+- Design patterns such as command/query segregation, singletons,...
+- Programming principles such as SOLID.
+- Logging requests middleware.
+
 # How to run
 ## REST Api application
 ### Swagger
