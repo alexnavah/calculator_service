@@ -18,7 +18,7 @@ Just run the application (F5) with CalculatorService.Server as Startup project a
 ```
 $ dotnet publish
 $ docker build -t calculatorservice.server .
-$ docker run -p 8080:80 calculatorservice.server
+$ docker run -p 4631:80 calculatorservice.server
 ```
 
 ### API Request: use curl, Postman, or CLI (instructions provided below)
