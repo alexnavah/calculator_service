@@ -67,7 +67,7 @@ POST /sqrt
 
 - Retrieves operations associated with its *X-Evi-Tracking-Id* header
 ```http
-GET /journal/query
+POST /journal/query
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |

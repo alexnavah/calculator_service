@@ -14,8 +14,8 @@ namespace CalculatorService.Server.Controllers
             _journalQuery = journalQuery;
         }
 
-        [HttpGet("query")]
-        public ActionResult JournalQuery(string id)
+        [HttpPost("query")]
+        public IActionResult JournalQuery([FromBody]string id)
         {
             var records = _journalQuery.Execute(id);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -8,8 +9,9 @@ namespace CalculatorService.Client
 {
     class Program
     {
-        private static readonly string GetMethod = "GET";
-        private static readonly string PostMethod = "POST";
+        private static readonly string EndpointOption = "-e";
+        private static readonly string ParametersOption = "-p";
+        private static readonly string TrackingOption = "-x";
         private static readonly HttpClient Client = new HttpClient();
 
         static async Task Main(string[] args)
@@ -23,88 +25,105 @@ namespace CalculatorService.Client
 
             for (int i = 0; i < args.Length; i++)
             {
-                if (args[i] == "-e")
+                if (args[i].Equals(EndpointOption))
                 {
                     var operation = args[i + 1].ToLower();
                     consoleobject.Operation = operation;
                     consoleobject.Endpoint = FindEndpoint(operation);
                 }
 
-                if (args[i] == "-p")
+                if (args[i].Equals(ParametersOption))
                 {
-                    consoleobject.Parameters = args[i + 1].ToLower();
+                    consoleobject.Parameters = args[i + 1];
                 }
 
-                if (args[i] == "-x")
+                if (args[i].Equals(TrackingOption))
                 {
                     consoleobject.TrackingId = args[i + 1];
                 }
             }
 
             var content = ParseParameters(consoleobject.Parameters, consoleobject.Operation);
+            Console.WriteLine($"Serialized content: {content}");
+
             HttpContent httpContent = new StringContent(content, Encoding.UTF8, "application/json");
-            var uri = new Uri($"{consoleobject.BaseAddress}{consoleobject.Endpoint.Item1}");
-            Console.WriteLine(uri.AbsoluteUri);
+            var uri = new Uri($"{consoleobject.BaseAddress}{consoleobject.Endpoint}");
+            Console.WriteLine($"Calling endpoint: {uri.AbsoluteUri}");
 
-            ConfigureHttpClient();
+            ConfigureHttpClient(consoleobject.TrackingId);
 
-            if (!string.IsNullOrWhiteSpace(consoleobject.TrackingId))
-            {
-                Client.DefaultRequestHeaders.Add("X-Evi-Tracking-Id", consoleobject.TrackingId);
-            }
-
-            if (consoleobject.Endpoint.Item2.Equals(PostMethod))
-            {
-                var result = await Client.PostAsync(uri, httpContent);
-                Console.WriteLine(result);
-            }
-            else
-            {
-                var result = await Client.GetAsync(uri);
-            }
-
+            var response = await Client.PostAsync(uri, httpContent);
+            Console.WriteLine($"Result: {await response.Content.ReadAsStringAsync()}");
         }
 
-        private static void ConfigureHttpClient()
+        private static void ConfigureHttpClient(string trackingId)
         {
-            Client.DefaultRequestHeaders.Remove("X-Evi-Tracking-Id");
-            Client.DefaultRequestHeaders.Remove("Accept");
-            Client.DefaultRequestHeaders.Remove("Content-Type");
-
             Client.DefaultRequestHeaders.Add("Accept", "application/json");
-            Client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+
+            if (!string.IsNullOrWhiteSpace(trackingId))
+            {
+                Client.DefaultRequestHeaders.Add("X-Evi-Tracking-Id", trackingId);
+            }
         }
 
         private static string ParseParameters(string parameters, string operation)
         {
-            return operation switch
+            try
             {
-                "add" => JsonSerializer.Serialize(new { Number = parameters }),
-                "sub" => JsonSerializer.Serialize(new { Number = parameters }),
-                "mult" => JsonSerializer.Serialize(new { Number = parameters }),
-                "div" => JsonSerializer.Serialize(new { Dividend = parameters }),
-                "sqrt" => JsonSerializer.Serialize(new { Number = parameters }),
-                "journal" => string.Empty,
-                _ => throw new ArgumentException("Endpoint not found. Valid ones are add, sub, mult, div, sqrt and journal."),
-            };
+                switch (operation)
+                {
+                    case "add":
+                        var addendsString = parameters.Split("+");
+                        var addendsInt = new List<int>();
+                        for(var i = 0; i < addendsString.Length; i++)
+                        {
+                            addendsInt.Add(int.Parse(addendsString[i]));
+                        }
+                        return JsonSerializer.Serialize(new { addends = addendsInt.ToArray() });
+                    case "sub":
+                        var subParams = parameters.Split("-");
+                        return JsonSerializer.Serialize(new { minuend = int.Parse(subParams[0]), subtrahend = int.Parse(subParams[1]) });
+                    case "mult":
+                        var factorsString = parameters.Split("*");
+                        var factorsInt = new List<int>();
+                        for (var i = 0; i < factorsString.Length; i++)
+                        {
+                            factorsInt.Add(int.Parse(factorsString[i]));
+                        }
+                        return JsonSerializer.Serialize(new { factors = factorsInt.ToArray() });
+                    case "div":
+                        var divParams = parameters.Split("/");
+                        return JsonSerializer.Serialize(new { dividend = int.Parse(divParams[0]), divisor = int.Parse(divParams[1]) });
+                    case "sqrt":
+                        return JsonSerializer.Serialize(new { number = int.Parse(parameters) });
+                    case "journal":
+                        return JsonSerializer.Serialize(parameters);
+                    default:
+                        throw new ArgumentException($"Endpoint not found ({EndpointOption}). Check documentation for {operation}.");
+                }
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException($"Invalid parameter format ({ParametersOption}). Check documentation for {operation}.");
+            }
         }
 
-        private static Tuple<string, string> FindEndpoint(string operation) => operation switch
+        private static string FindEndpoint(string operation) => operation switch
         {
-            "add" => new Tuple<string, string>("calculator/add", PostMethod),
-            "sub" => new Tuple<string, string>("calculator/sub", PostMethod),
-            "mult" => new Tuple<string, string>("calculator/mult", PostMethod),
-            "div" => new Tuple<string, string>("calculator/div", PostMethod),
-            "sqrt" => new Tuple<string, string>("sqrt", PostMethod),
-            "journal" => new Tuple<string, string>("journal/query", GetMethod),
-            _ => throw new ArgumentException("Endpoint not found. Valid ones are add, sub, mult, div, sqrt and journal."),
+            "add" => "calculator/add",
+            "sub" => "calculator/sub",
+            "mult" => "calculator/mult",
+            "div" => "calculator/div",
+            "sqrt" => "sqrt",
+            "journal" => "journal/query",
+            _ => throw new ArgumentException($"Endpoint not found ({EndpointOption}). Check documentation for {operation}."),
         };
 
         private class ConsoleObject
         {
             public string Operation { get; set; }
-            public string BaseAddress => "http://localhost:4361/";
-            public Tuple<string,string> Endpoint { get; set; }
+            public string BaseAddress => "http://localhost:4631/";
+            public string Endpoint { get; set; }
             public string Parameters { get; set; }
             public string TrackingId { get; set; }
         }
