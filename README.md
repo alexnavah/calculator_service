@@ -14,7 +14,7 @@ Just run the application (F5) with CalculatorService.Server as Startup project a
 
 [https://www.docker.com/docker-community](https://www.docker.com/docker-community)
 
-- Run the following commands in .\src\ApiApplication folder:
+- Run the following commands in .\src\CalculatorService.Server folder:
 ```
 $ dotnet publish
 $ docker build -t calculatorservice.server .
