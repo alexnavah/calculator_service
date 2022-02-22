@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace CalculatorService.Server.Attributes
 {
+    /// <summary>
+    /// Filter to use in Swagger UI
+    /// </summary>
     public class EviTrackingSwaggerAttribute : IOperationFilter
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)

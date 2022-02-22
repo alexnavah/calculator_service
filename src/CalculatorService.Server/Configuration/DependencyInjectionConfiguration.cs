@@ -8,6 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CalculatorService.Server.Configuration
 {
+    /// <summary>
+    /// Handles API dependency injection
+    /// </summary>
     public static class DependencyInjectionConfiguration
     {
         public static void ConfigureDependencyInjection(this IServiceCollection services)

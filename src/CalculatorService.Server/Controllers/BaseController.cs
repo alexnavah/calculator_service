@@ -6,6 +6,12 @@ namespace CalculatorService.Server.Controllers
 {
     public abstract class BaseController : Controller
     {
+        /// <summary>
+        /// Handles <see cref="OperationResult"/> result
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="result"></param>
+        /// <returns>The <see cref="IActionResult"/> base on Success value</returns>
         protected IActionResult HandleComputeResult<T>(T result) where T : OperationResult
         {
             if (result.Success)
@@ -18,6 +24,9 @@ namespace CalculatorService.Server.Controllers
             }
         }
 
+        /// <summary>
+        /// <see cref="BadRequestResult"/> with a custom error message
+        /// </summary>
         protected IActionResult GetBadRequestError() => BadRequest(ErrorResult.CreateBadRequest()); 
     }
 }

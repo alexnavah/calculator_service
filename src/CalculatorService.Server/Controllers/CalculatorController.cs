@@ -109,6 +109,8 @@ namespace CalculatorService.Server.Controllers
                 return GetBadRequestError();
             }
 
+            throw new ArgumentNullException();
+
             var computeResult = _squareRootCommand.Compute(parameters);
 
             if (computeResult.Success)

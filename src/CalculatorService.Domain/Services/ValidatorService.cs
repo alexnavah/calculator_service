@@ -3,6 +3,7 @@ using CalculatorService.Domain.Services.Interfaces;
 
 namespace CalculatorService.Domain.Services
 {
+    /// <inheritdoc cref="IValidatorService"/>
     public class ValidatorService : IValidatorService
     {
         public bool IsValid(AddOperationParameters parameters)

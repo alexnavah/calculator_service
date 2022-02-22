@@ -1,6 +1,7 @@
 using CalculatorService.Domain.Models.Error;
 using CalculatorService.Server.Attributes;
 using CalculatorService.Server.Configuration;
+using CalculatorService.Server.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -48,10 +49,15 @@ namespace CalculatorService.Server
 
             app.UseRouting();
 
+            app.UseMiddleware<LoggerMiddleware>();
+
             app.UseExceptionHandler(exceptionHandler =>
             {
                 exceptionHandler.Run(async context =>
                 {
+                    /***
+                     * Return a custom internal server error instead of whole Exception with Stacktrace, etc...
+                     */
                     if (context.Response.StatusCode.Equals(StatusCodes.Status500InternalServerError))
                     {
                         context.Response.ContentType = "application/json";

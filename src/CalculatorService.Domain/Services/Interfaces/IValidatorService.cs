@@ -2,6 +2,9 @@
 
 namespace CalculatorService.Domain.Services.Interfaces
 {
+    /// <summary>
+    /// Handles input parameters values validation such as dividing by zero, etc...
+    /// </summary>
     public interface IValidatorService
     {
         bool IsValid(AddOperationParameters parameters);
