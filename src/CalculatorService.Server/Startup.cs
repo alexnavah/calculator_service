@@ -1,3 +1,4 @@
+using CalculatorService.Server.Attributes;
 using CalculatorService.Server.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,7 +24,10 @@ namespace CalculatorService.Server
             services.AddMemoryCache();
             services.ConfigureDependencyInjection();
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(s =>
+            {
+                s.OperationFilter<EviTrackingSwaggerAttribute>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +48,7 @@ namespace CalculatorService.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapSwagger();
             });
         }
     }

@@ -5,7 +5,12 @@ namespace CalculatorService.Domain.Models.Journal
 {
     public class JournalResult
     {
-        public JournalResult(string trackingId, JournalEntry entry)
+        private JournalResult()
+        {
+            Operations = new Queue<JournalEntry>();
+        }
+
+        private JournalResult(string trackingId, JournalEntry entry)
         {
             TrackingId = trackingId;
             Operations = new Queue<JournalEntry>();
@@ -15,6 +20,12 @@ namespace CalculatorService.Domain.Models.Journal
         [JsonIgnore]
         public string TrackingId { get; set; }
         public Queue<JournalEntry> Operations { get; set; }
+
+
+        public static JournalResult Create()
+        {
+            return new JournalResult();
+        }
 
         public static JournalResult Create(string trackingId, JournalEntry entry)
         {

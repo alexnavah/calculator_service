@@ -17,7 +17,7 @@ namespace CalculatorService.Domain.Queries
         {
             var records = _memoryCacheService.Get<JournalResult>(trackingId);
 
-            return records;
+            return records ?? JournalResult.Create();
         }
     }
 }

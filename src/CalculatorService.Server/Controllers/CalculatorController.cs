@@ -11,7 +11,6 @@ namespace CalculatorService.Server.Controllers
 {
     [ApiController]
     [AllowAnonymous]
-    [Route("[controller]")]
     public class CalculatorController : BaseController
     {
         private readonly IValidatorService _validatorService;
@@ -20,19 +19,21 @@ namespace CalculatorService.Server.Controllers
         private readonly SubtractCommand _subtractCommand;
         private readonly MultiplyCommand _multiplyCommand;
         private readonly DivideCommand _divideCommand;
+        private readonly SquareRootCommand _squareRootCommand;
 
         public CalculatorController(IValidatorService validatorService, AddCommand addCommand, SubtractCommand subtractCommand,
-            MultiplyCommand multiplyCommand, DivideCommand divideCommand, IAddJournalEntryCommand addJournalEntryCommand)
+            MultiplyCommand multiplyCommand, DivideCommand divideCommand, SquareRootCommand squareRootCommand, IAddJournalEntryCommand addJournalEntryCommand)
         {
             _validatorService = validatorService;
             _addCommand = addCommand;
             _subtractCommand = subtractCommand;
             _multiplyCommand = multiplyCommand;
             _divideCommand = divideCommand;
+            _squareRootCommand = squareRootCommand;
             _addJournalEntryCommand = addJournalEntryCommand;
         }
 
-        [HttpPost("add")]
+        [HttpPost("[controller]/add")]
         public IActionResult Add(AddOperationParameters parameters)
         {
             if (!_validatorService.IsValid(parameters))
@@ -50,7 +51,7 @@ namespace CalculatorService.Server.Controllers
             return HandleComputeResult(computeResult);
         }
 
-        [HttpPost("sub")]
+        [HttpPost("[controller]/sub")]
         public IActionResult Subtract(SubtractOperationParameters parameters)
         {
             var computeResult = _subtractCommand.Compute(parameters);
@@ -63,7 +64,7 @@ namespace CalculatorService.Server.Controllers
             return HandleComputeResult(computeResult);
         }
 
-        [HttpPost("mult")]
+        [HttpPost("[controller]/mult")]
         public IActionResult Multiply(MultiplyOperationParameters parameters)
         {
             if (!_validatorService.IsValid(parameters))
@@ -81,7 +82,7 @@ namespace CalculatorService.Server.Controllers
             return HandleComputeResult(computeResult);
         }
 
-        [HttpPost("div")]
+        [HttpPost("[controller]/div")]
         public IActionResult Divide(DivideOperationParameters parameters)
         {
             if (!_validatorService.IsValid(parameters))
@@ -98,10 +99,28 @@ namespace CalculatorService.Server.Controllers
 
             return HandleComputeResult(computeResult);
         }
+        
+        [HttpPost("sqrt")]
+        public IActionResult SquareRoot(SquareRootOperationParameters parameters)
+        {
+            //if (!_validatorService.IsValid(parameters))
+            //{
+            //    return GetBadRequestError();
+            //}
+
+            var computeResult = _squareRootCommand.Compute(parameters);
+
+            if (computeResult.Success)
+            {
+                HandleTracking(computeResult.AsJournalEntry(parameters));
+            }
+
+            return HandleComputeResult(computeResult);
+        }
 
         private void HandleTracking(JournalEntry operationResult)
         {
-            if (Request.Headers.TryGetValue("X‐Evi‐Tracking‐Id", out var trackingId) && !string.IsNullOrWhiteSpace(trackingId))
+            if (Request.Headers.TryGetValue(@"X-Evi-Tracking-Id", out var trackingId) && !string.IsNullOrWhiteSpace(trackingId))
             {
                 _addJournalEntryCommand.Insert(trackingId.ToString(), operationResult);
             }
