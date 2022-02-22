@@ -33,7 +33,7 @@ namespace CalculatorService.Server.Tests.Unit.Commands
         }
 
         [Fact]
-        public void ShouldThrowArithmeticException()
+        public void ShouldThrowArithmeticExceptionWhenRunningNegativeSquareRoot()
         {
             // Arrange
             var parameters = new SquareRootOperationParameters { Number = int.MinValue };

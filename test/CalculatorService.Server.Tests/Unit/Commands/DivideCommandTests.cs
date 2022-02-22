@@ -32,7 +32,7 @@ namespace CalculatorService.Server.Tests.Unit.Commands
         }
 
         [Fact]
-        public void ShouldThrowArithmeticException()
+        public void ShouldThrowArithmeticExceptionWhenDivideByZero()
         {
             // Arrange
             var parameters = new DivideOperationParameters { Dividend = 1, Divisor = 0 };

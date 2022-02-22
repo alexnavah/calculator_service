@@ -32,7 +32,7 @@ namespace CalculatorService.Server.Tests.Unit.Commands
         }
 
         [Fact]
-        public void ShouldThrowArithmeticException()
+        public void ShouldThrowArithmeticExceptionWhenIntegerOverflow()
         {
             // Arrange
             var parameters = new SubtractOperationParameters { Minuend = int.MinValue, Subtrahend = 1 };

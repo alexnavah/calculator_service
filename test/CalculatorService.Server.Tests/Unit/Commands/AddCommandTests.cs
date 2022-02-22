@@ -31,7 +31,7 @@ namespace CalculatorService.Server.Tests.Unit.Commands
         }
 
         [Fact]
-        public void ShouldThrowArithmeticException()
+        public void ShouldThrowArithmeticExceptionWhenIntegerOverflow()
         {
             // Arrange
             var parameters = new AddOperationParameters { Addends = new int[2] { int.MaxValue, 1 } };
