@@ -7,5 +7,6 @@ namespace CalculatorService.Domain.Services.Interfaces
         bool IsValid(AddOperationParameters parameters);
         bool IsValid(MultiplyOperationParameters parameters);
         bool IsValid(DivideOperationParameters parameters);
+        bool IsValid(SquareRootOperationParameters parameters);
     }
 }

@@ -103,10 +103,10 @@ namespace CalculatorService.Server.Controllers
         [HttpPost("sqrt")]
         public IActionResult SquareRoot(SquareRootOperationParameters parameters)
         {
-            //if (!_validatorService.IsValid(parameters))
-            //{
-            //    return GetBadRequestError();
-            //}
+            if (!_validatorService.IsValid(parameters))
+            {
+                return GetBadRequestError();
+            }
 
             var computeResult = _squareRootCommand.Compute(parameters);
 

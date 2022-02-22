@@ -34,5 +34,15 @@ namespace CalculatorService.Domain.Services
 
             return true;
         }
+
+        public bool IsValid(SquareRootOperationParameters parameters)
+        {
+            if(parameters.Number < 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
