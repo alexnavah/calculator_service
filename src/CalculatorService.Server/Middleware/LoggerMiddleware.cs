@@ -24,7 +24,6 @@ namespace CalculatorService.Server.Middleware
         {
             var stopWatch = Stopwatch.StartNew();
             var traceId = Guid.NewGuid();
-            _logger.LogInformation($"[INFO] Request {traceId} started");
 
             await _next(context);
 
@@ -35,13 +34,13 @@ namespace CalculatorService.Server.Middleware
             switch (context.Response.StatusCode)
             {
                 case StatusCodes.Status400BadRequest:
-                    _logger.LogWarning($"[WARN][400] Request {traceId} finished in {elapsedTime}: Bad request data");
+                    _logger.LogWarning($"Request {traceId} finished in {elapsedTime}: Bad request data");
                     break;
                 case StatusCodes.Status500InternalServerError:
-                    _logger.LogError($"[ERROR][500] Request {traceId} finished in {elapsedTime}: Internal server error");
+                    _logger.LogError($"Request {traceId} finished in {elapsedTime}: Internal server error");
                     break;
                 default:
-                    _logger.LogInformation($"[INFO] Request {traceId} finished in {elapsedTime}");
+                    _logger.LogInformation($"Request {traceId} finished in {elapsedTime}");
                     break;
             }
         }

@@ -10,7 +10,7 @@
 - As journal is only needed to be kept for the duration of the application, I have used memory cache. (*Microsoft.Extensions.Caching.Memory.IMemoryCache*)
 - Design patterns such as command/query segregation, singletons,...
 - Programming principles such as SOLID and TDD.
-- Logging requests middleware.
+- Daily rolling file logging requests middleware using NLog library.
 
 # How to run
 ## REST Api application
@@ -86,7 +86,7 @@ The console application does HTTP requests to the API endpoints below.
 
 | Parameter | Description							| Example			|
 | :-------- | :--------------------------------		| :---------------	|
-| `-o`      | **Required**. Operation type			|`-o "add"|
+| `-o`      | **Required**. Operation type			|`-o "add"`|
 | `-p`      | **Required**. Operation parameters	|`-p 1+2+3+4+5`|
 | `-x`      | Tracking identifier					|`-x "trackId123"`|
 
