@@ -9,7 +9,7 @@
 - Int32 variables for most of the properties, except for squareroot operations.
 - As journal is only needed to be kept for the duration of the application, I have used memory cache. (*Microsoft.Extensions.Caching.Memory.IMemoryCache*)
 - Design patterns such as command/query segregation, singletons,...
-- Programming principles such as SOLID.
+- Programming principles such as SOLID and TDD.
 - Logging requests middleware.
 
 # How to run
@@ -84,11 +84,11 @@ POST /journal/query
 ## Command line client (*CalculatorService.Client*)
 The console application does HTTP requests to the API endpoints below.
 
-| Parameter | Description                       |
-| :-------- | :-------------------------------- |
-| `-o`      | **Required**. Operation type |
-| `-p`      | **Required**. Operation parameters |
-| `-x`      | Tracking identifier |
+| Parameter | Description							| Example			|
+| :-------- | :--------------------------------		| :---------------	|
+| `-o`      | **Required**. Operation type			|`-o "add"|
+| `-p`      | **Required**. Operation parameters	|`-p 1+2+3+4+5`|
+| `-x`      | Tracking identifier					|`-x "trackId123"`|
 
 ### CLI examples
 | Type      | Description                   | Example              |
@@ -98,4 +98,4 @@ The console application does HTTP requests to the API endpoints below.
 | `mult`    | Multiply two or more values   |`-o "mult" -p 1*2*3*4*5`|
 | `div`     | Dividend divide divisor      |`-o "div" -p 10/4`|
 | `sqrt`    | Squareroot of a number       |`-o "sqrt" -p 4`|
-| `journal` | Operations of a tracking identifier |`-o "journal" -p "trackId"` |
+| `journal` | Operations of a tracking identifier |`-o "journal" -p "trackId123"` |
