@@ -12,8 +12,8 @@
 - Programming principles such as SOLID and TDD.
 - Daily rolling file logging requests middleware using NLog library.
 
-# How to run
-## REST Api application
+# How to build and deploy
+## REST Api application (*CalculatorService.Server*)
 ### Swagger
 Just run the application (F5) with CalculatorService.Server as Startup project and go to http://localhost:4631/swagger/index.html
 
@@ -28,9 +28,36 @@ $ dotnet publish
 $ docker build -t calculatorservice.server .
 $ docker run -p 4631:80 calculatorservice.server
 ```
+- Binaries and everything can be found in ./bin/Debug/netcoreapp3.1/publish
 
-### API Request: use curl, Postman, or CLI (instructions provided below)
+## Command line client (*CalculatorService.Client*)
+- Run the following commands in .\src\CalculatorService.Server folder:
+```
+$ dotnet publish
+```
+- Binaries and everything can be found in ./bin/Debug/netcoreapp3.1/publish
 
+# How to use
+## Command line client (*CalculatorService.Client*)
+The console application does HTTP requests to the API endpoints below.
+
+| Parameter | Description							| Example			|
+| :-------- | :--------------------------------		| :---------------	|
+| `-o`      | **Required**. Operation type			|`-o "add"`|
+| `-p`      | **Required**. Operation parameters	|`-p 1+2+3+4+5`|
+| `-x`      | Tracking identifier					|`-x "trackId123"`|
+
+### CLI examples
+| Type      | Description                   | Example              |
+| :------   | :---------------------------  | :--------------------|
+| `add`     | Sum two or more values        |`-o "add" -p 1+2+3+4+5`        |
+| `sub`     | Minuend minus subtrahend      |`-o "sub" -p 10-4`          |
+| `mult`    | Multiply two or more values   |`-o "mult" -p 1*2*3*4*5`|
+| `div`     | Dividend divide divisor      |`-o "div" -p 10/4`|
+| `sqrt`    | Squareroot of a number       |`-o "sqrt" -p 4`|
+| `journal` | Operations of a tracking identifier |`-o "journal" -p "trackId123"` |
+
+## API Usage: use curl, Postman, or CLI (instructions provided below)
 - Sum two or more values
 ```http
 POST /calculator/add
@@ -80,22 +107,3 @@ POST /journal/query
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Key to find operations |
-
-## Command line client (*CalculatorService.Client*)
-The console application does HTTP requests to the API endpoints below.
-
-| Parameter | Description							| Example			|
-| :-------- | :--------------------------------		| :---------------	|
-| `-o`      | **Required**. Operation type			|`-o "add"`|
-| `-p`      | **Required**. Operation parameters	|`-p 1+2+3+4+5`|
-| `-x`      | Tracking identifier					|`-x "trackId123"`|
-
-### CLI examples
-| Type      | Description                   | Example              |
-| :------   | :---------------------------  | :--------------------|
-| `add`     | Sum two or more values        |`-o "add" -p 1+2+3+4+5`        |
-| `sub`     | Minuend minus subtrahend      |`-o "sub" -p 10-4`          |
-| `mult`    | Multiply two or more values   |`-o "mult" -p 1*2*3*4*5`|
-| `div`     | Dividend divide divisor      |`-o "div" -p 10/4`|
-| `sqrt`    | Squareroot of a number       |`-o "sqrt" -p 4`|
-| `journal` | Operations of a tracking identifier |`-o "journal" -p "trackId123"` |
