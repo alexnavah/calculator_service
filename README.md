@@ -57,7 +57,7 @@ The console application does HTTP requests to the API endpoints below.
 | `sqrt`    | Squareroot of a number       |`-o "sqrt" -p 4`|
 | `journal` | Operations of a tracking identifier |`-o "journal" -p "trackId123"` |
 
-## API Usage: use curl, Postman, or CLI (instructions provided below)
+## API Usage: use curl, Postman, or whatever...
 - Sum two or more values
 ```http
 POST /calculator/add
